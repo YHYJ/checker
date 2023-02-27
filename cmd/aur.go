@@ -1,40 +1,30 @@
 /*
-Copyright © 2023 NAME HERE <EMAIL ADDRESS>
+File: aur.go
+Author: YJ
+Email: yj1516268@outlook.com
+Created Time: 2023-02-27 13:33:21
 
+Description: 程序子命令'aur'时执行
 */
+
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
+	"github.com/yhyj/checker/function"
 )
 
 // aurCmd represents the aur command
 var aurCmd = &cobra.Command{
 	Use:   "aur",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "检查AUR包同步情况",
+	Long:  `检查本地安装的AUR包是否和源保持同步`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("aur called")
+		function.AURChecker()
 	},
 }
 
 func init() {
+	aurCmd.Flags().BoolP("help", "h", false, "Help for aur")
 	rootCmd.AddCommand(aurCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// aurCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// aurCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

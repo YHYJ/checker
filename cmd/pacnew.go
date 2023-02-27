@@ -1,40 +1,30 @@
 /*
-Copyright © 2023 NAME HERE <EMAIL ADDRESS>
+File: pacnew.go
+Author: YJ
+Email: yj1516268@outlook.com
+Created Time: 2023-02-21 11:24:15
 
+Description: 程序子命令'pacnew'时执行
 */
+
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
+	"github.com/yhyj/checker/function"
 )
 
 // pacnewCmd represents the pacnew command
 var pacnewCmd = &cobra.Command{
 	Use:   "pacnew",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "检查对比软件包新旧配置文件",
+	Long:  `检查对比已安装软件包的新旧配置文件`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("pacnew called")
+		function.PacnewChecker()
 	},
 }
 
 func init() {
+	pacnewCmd.Flags().BoolP("help", "h", false, "Help for pacnew")
 	rootCmd.AddCommand(pacnewCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// pacnewCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// pacnewCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
