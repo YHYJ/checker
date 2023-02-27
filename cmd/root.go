@@ -1,7 +1,12 @@
 /*
-Copyright © 2023 NAME HERE <EMAIL ADDRESS>
+File: root.go
+Author: YJ
+Email: yj1516268@outlook.com
+Created Time: 2023-02-27 12:54:23
 
+Description: 程序未带子命令或参数时执行
 */
+
 package cmd
 
 import (
@@ -9,8 +14,6 @@ import (
 
 	"github.com/spf13/cobra"
 )
-
-
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -47,5 +50,3 @@ func init() {
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
-
-
