@@ -11,5 +11,5 @@ package function
 
 func AURChecker()  {
 	aurArgs := []string{"-c", `pacman -Qmq | parallel 'result=$(package-query -AQ -f "%v" "{}" | uniq -d | wc -l); [ $result -eq 0  ] && echo "{}"'`}
-	RunCommand("bash", aurArgs)
+	RunCommandGetFlag("bash", aurArgs)
 }

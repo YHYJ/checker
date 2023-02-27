@@ -11,5 +11,5 @@ package function
 
 func PacnewChecker() {
 	pacnewArgs := []string{}
-	RunCommand("pacdiff", pacnewArgs)
+	RunCommandGetFlag("pacdiff", pacnewArgs)
 }
