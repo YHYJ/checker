@@ -17,14 +17,14 @@ import (
 // aurCmd represents the aur command
 var aurCmd = &cobra.Command{
 	Use:   "aur",
-	Short: "检查AUR包同步情况",
-	Long:  `检查本地安装的AUR包是否和源保持同步`,
+	Short: "Check AUR package synchronization",
+	Long:  `Check if the locally installed AUR package is kept in sync with the source.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		function.AURChecker()
 	},
 }
 
 func init() {
-	aurCmd.Flags().BoolP("help", "h", false, "Help for aur")
+	aurCmd.Flags().BoolP("help", "h", false, "help for aur")
 	rootCmd.AddCommand(aurCmd)
 }

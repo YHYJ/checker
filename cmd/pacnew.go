@@ -17,14 +17,14 @@ import (
 // pacnewCmd represents the pacnew command
 var pacnewCmd = &cobra.Command{
 	Use:   "pacnew",
-	Short: "检查对比软件包新旧配置文件",
-	Long:  `检查对比已安装软件包的新旧配置文件`,
+	Short: "Check and compare the old and new configuration files of the package",
+	Long:  `Check and compare the old and new configuration files of installed packages.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		function.PacnewChecker()
 	},
 }
 
 func init() {
-	pacnewCmd.Flags().BoolP("help", "h", false, "Help for pacnew")
+	pacnewCmd.Flags().BoolP("help", "h", false, "help for pacnew")
 	rootCmd.AddCommand(pacnewCmd)
 }

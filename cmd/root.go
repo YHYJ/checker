@@ -15,17 +15,15 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "checker",
-	Short: "用于进行系统检查",
-	Long:  `Checker是适用于Arch Linux的系统检查工具`,
+	Short: "For system checks",
+	Long:  `Checker is a system checking tool for Arch Linux.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },
 }
 
-// 由main.main调用
 func Execute() {
 	err := rootCmd.Execute()
 	if err != nil {
@@ -34,8 +32,5 @@ func Execute() {
 }
 
 func init() {
-	// 定义全局Flag
-	rootCmd.Flags().BoolP("help", "h", false, "Help for Checker")
-
-	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.scleaner.yaml)")
+	rootCmd.Flags().BoolP("help", "h", false, "help for Checker")
 }
