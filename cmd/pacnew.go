@@ -25,6 +25,6 @@ var pacnewCmd = &cobra.Command{
 }
 
 func init() {
-	pacnewCmd.Flags().BoolP("help", "h", false, "help for pacnew")
+	pacnewCmd.Flags().BoolP("help", "h", false, "help for pacnew command")
 	rootCmd.AddCommand(pacnewCmd)
 }

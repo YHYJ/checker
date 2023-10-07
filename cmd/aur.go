@@ -25,6 +25,6 @@ var aurCmd = &cobra.Command{
 }
 
 func init() {
-	aurCmd.Flags().BoolP("help", "h", false, "help for aur")
+	aurCmd.Flags().BoolP("help", "h", false, "help for aur command")
 	rootCmd.AddCommand(aurCmd)
 }
