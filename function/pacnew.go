@@ -9,7 +9,11 @@ Description: 子命令`pacnew`功能函数
 
 package function
 
-func PacnewChecker() {
+func PacnewChecker() (err error) {
 	pacnewArgs := []string{}
-	RunCommandGetFlag("pacdiff", pacnewArgs)
+	err = RunCommand("pacdiff", pacnewArgs)
+	if err != nil {
+		return err
+	}
+	return nil
 }
