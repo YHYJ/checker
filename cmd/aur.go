@@ -22,8 +22,7 @@ var aurCmd = &cobra.Command{
 	Short: "Check AUR package synchronization",
 	Long:  `Check if the locally installed AUR package is kept in sync with the source.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		err := function.AURChecker()
-		if err != nil {
+		if err := function.AURChecker(); err != nil {
 			fmt.Printf("\x1b[31m%s\x1b[0m\n", err)
 		}
 	},

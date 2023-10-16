@@ -22,8 +22,7 @@ var pacnewCmd = &cobra.Command{
 	Short: "Check and compare the old and new configuration files of the package",
 	Long:  `Check and compare the old and new configuration files of installed packages.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		err := function.PacnewChecker()
-		if err != nil {
+		if err := function.PacnewChecker(); err != nil {
 			fmt.Printf("\x1b[31m%s\x1b[0m\n", err)
 		}
 	},

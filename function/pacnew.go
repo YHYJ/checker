@@ -9,10 +9,9 @@ Description: 子命令`pacnew`功能函数
 
 package function
 
-func PacnewChecker() (err error) {
+func PacnewChecker() error {
 	pacnewArgs := []string{}
-	err = RunCommand("pacdiff", pacnewArgs)
-	if err != nil {
+	if err := RunCommand("pacdiff", pacnewArgs); err != nil {
 		return err
 	}
 	return nil

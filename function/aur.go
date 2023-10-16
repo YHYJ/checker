@@ -9,10 +9,9 @@ Description: 子命令`aur`功能函数
 
 package function
 
-func AURChecker() (err error) {
+func AURChecker() error {
 	aurArgs := []string{"-c", `pacman -Qmq | parallel 'result=$(package-query -AQ -f "%v" "{}" | uniq -d | wc -l); [ $result -eq 0  ] && echo "{}"'`}
-	err = RunCommand("bash", aurArgs)
-	if err != nil {
+	if err := RunCommand("bash", aurArgs); err != nil {
 		return err
 	}
 	return nil
