@@ -13,7 +13,7 @@ import "fmt"
 
 // 程序信息
 var (
-	name    string = "Checker"
+	name    string = "checker"
 	version string = "v0.2.8"
 )
 

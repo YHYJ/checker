@@ -18,7 +18,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "checker",
 	Short: "For system checks",
-	Long:  `Checker is a system checking tool for Arch Linux.`,
+	Long:  `checker is a system checking tool for Arch Linux.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },
@@ -32,5 +32,5 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.Flags().BoolP("help", "h", false, "help for Checker")
+	rootCmd.Flags().BoolP("help", "h", false, "help for checker")
 }
