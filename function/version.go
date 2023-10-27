@@ -15,7 +15,7 @@ import "fmt"
 const (
 	Name    = "Checker"
 	Version = "v0.3.0"
-	Path    = "github.com/yhyj/skynet"
+	Path    = "github.com/yhyj/checker"
 )
 
 func ProgramInfo(only bool) string {
