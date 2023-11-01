@@ -14,7 +14,7 @@ import "fmt"
 // 程序信息
 const (
 	name    = "Checker"
-	version = "v0.3.2"
+	version = "v0.4.0"
 	project = "github.com/yhyj/checker"
 )
 
