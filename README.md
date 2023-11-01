@@ -40,25 +40,25 @@
 
 ---
 
-适用于Arch Linux的系统检查工具
+适用于 Arch Linux 的系统检查工具
 
 ## Usage
 
 - `aur`子命令
 
-    该子命令检查本地安装的AUR包是否与源保持同步
+  该子命令检查本地安装的 AUR 包是否与源保持同步
 
 - `pacnew`子命令
 
-    该子命令检查并比较已更新包的新旧配置文件
+  该子命令检查并比较已更新包的新旧配置文件
 
 - `version`子命令
 
-    查看程序版本信息
+  查看程序版本信息
 
 - `help`
 
-    查看程序帮助信息
+  查看程序帮助信息
 
 ## Compile
 
@@ -80,8 +80,8 @@ CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -gcflags="-trimpath" -ldflags="-s
 
 > 使用`uname -m`确定硬件架构
 >
-> - 结果是x86_64则GOARCH=amd64
-> - 结果是aarch64则GOARCH=arm64
+> - 结果是 x86_64 则 GOARCH=amd64
+> - 结果是 aarch64 则 GOARCH=arm64
 
 #### macOS
 
@@ -91,8 +91,8 @@ CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -gcflags="-trimpath" -ldflags="-
 
 > 使用`uname -m`确定硬件架构
 >
-> - 结果是x86_64则GOARCH=amd64
-> - 结果是aarch64则GOARCH=arm64
+> - 结果是 x86_64 则 GOARCH=amd64
+> - 结果是 aarch64 则 GOARCH=arm64
 
 #### Windows
 
@@ -102,8 +102,8 @@ CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -gcflags="-trimpath" -ldflags="
 
 > 使用`echo %PROCESSOR_ARCHITECTURE%`确定硬件架构
 >
-> - 结果是x86_64则GOARCH=amd64
-> - 结果是aarch64则GOARCH=arm64
+> - 结果是 x86_64 则 GOARCH=amd64
+> - 结果是 aarch64 则 GOARCH=arm64
 
 ## Dependencies
 
