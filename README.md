@@ -1,9 +1,15 @@
-# README
+<h1 align="center">Checker</h1>
 
 <!-- File: README.md -->
 <!-- Author: YJ -->
 <!-- Email: yj1516268@outlook.com -->
 <!-- Created Time: 2023-02-27 11:40:09 -->
+
+---
+
+<p align="center">
+  <a href="https://github.com/YHYJ/checker/actions/workflows/release.yml"><img src="https://github.com/YHYJ/checker/actions/workflows/release.yml/badge.svg" alt="Go build and release by GoReleaser"></a>
+</p>
 
 ---
 
@@ -31,7 +37,6 @@
 <!-- | (__| | | |  __/ (__|   <  __/ |    -->
 <!--  \___|_| |_|\___|\___|_|\_\___|_|    -->
 <!------------------------------------------>
-
 
 ---
 
