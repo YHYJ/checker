@@ -11,6 +11,7 @@ package cli
 
 import "github.com/yhyj/checker/general"
 
+// PacnewChecker 检测 pacnew 文件
 func PacnewChecker() error {
 	pacnewArgs := []string{}
 	if err := general.RunCommand("pacdiff", pacnewArgs); err != nil {
