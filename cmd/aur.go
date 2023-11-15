@@ -14,6 +14,7 @@ import (
 
 	"github.com/spf13/cobra"
 	"github.com/yhyj/checker/cli"
+	"github.com/yhyj/checker/general"
 )
 
 // aurCmd represents the aur command
@@ -23,7 +24,7 @@ var aurCmd = &cobra.Command{
 	Long:  `Check if the locally installed AUR package is kept in sync with the source.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := cli.AURChecker(); err != nil {
-			fmt.Printf("\x1b[31m%s\x1b[0m\n", err)
+			fmt.Printf(general.ErrorBaseFormat, err)
 		}
 	},
 }

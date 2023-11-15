@@ -14,6 +14,7 @@ import (
 
 	"github.com/spf13/cobra"
 	"github.com/yhyj/checker/cli"
+	"github.com/yhyj/checker/general"
 )
 
 // pacnewCmd represents the pacnew command
@@ -23,7 +24,7 @@ var pacnewCmd = &cobra.Command{
 	Long:  `Check and compare the old and new configuration files of installed packages.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := cli.PacnewChecker(); err != nil {
-			fmt.Printf("\x1b[31m%s\x1b[0m\n", err)
+			fmt.Printf(general.ErrorBaseFormat, err)
 		}
 	},
 }
