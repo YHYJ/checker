@@ -12,6 +12,9 @@ package cli
 import "github.com/yhyj/checker/general"
 
 // AURChecker 检测已安装的属于 AUR 的异常包
+//
+// 返回：
+//   - 错误信息
 func AURChecker() error {
 	aurArgs := []string{"-c", `pacman -Qmq | parallel 'result=$(package-query -AQ -f "%v" "{}" | uniq -d | wc -l); [ $result -eq 0  ] && echo "{}"'`}
 	if err := general.RunCommand("bash", aurArgs); err != nil {
