@@ -4,7 +4,7 @@ Author: YJ
 Email: yj1516268@outlook.com
 Created Time: 2023-11-15 08:31:41
 
-Description: 操作变量（包括代码变量和环境变量）
+Description: 操作变量
 */
 
 package general

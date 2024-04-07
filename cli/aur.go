@@ -4,7 +4,7 @@ Author: YJ
 Email: yj1516268@outlook.com
 Created Time: 2023-02-27 12:59:16
 
-Description: 子命令`aur`功能函数
+Description: 子命令 'aur' 的实现
 */
 
 package cli
