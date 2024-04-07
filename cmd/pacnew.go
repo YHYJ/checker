@@ -10,11 +10,9 @@ Description: 程序子命令'pacnew'时执行
 package cmd
 
 import (
-	"fmt"
-
+	"github.com/gookit/color"
 	"github.com/spf13/cobra"
 	"github.com/yhyj/checker/cli"
-	"github.com/yhyj/checker/general"
 )
 
 // pacnewCmd represents the pacnew command
@@ -24,7 +22,7 @@ var pacnewCmd = &cobra.Command{
 	Long:  `Check and compare the old and new configuration files of installed packages.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := cli.PacnewChecker(); err != nil {
-			fmt.Printf(general.ErrorBaseFormat, err)
+			color.Error.Println(err)
 		}
 	},
 }

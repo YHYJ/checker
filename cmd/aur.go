@@ -10,11 +10,9 @@ Description: 程序子命令'aur'时执行
 package cmd
 
 import (
-	"fmt"
-
+	"github.com/gookit/color"
 	"github.com/spf13/cobra"
 	"github.com/yhyj/checker/cli"
-	"github.com/yhyj/checker/general"
 )
 
 // aurCmd represents the aur command
@@ -24,7 +22,7 @@ var aurCmd = &cobra.Command{
 	Long:  `Check if the locally installed AUR package is kept in sync with the source.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := cli.AURChecker(); err != nil {
-			fmt.Printf(general.ErrorBaseFormat, err)
+			color.Error.Println(err)
 		}
 	},
 }
