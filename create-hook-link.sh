@@ -6,7 +6,7 @@ Author: YJ
 Email: yj1516268@outlook.com
 Created Time: 2023-09-18 13:37:04
 
-Description: 创建git钩子
+Description: 创建 git 钩子
 
 Attentions:
 -
