@@ -19,17 +19,18 @@ script_dir=$(dirname "$0")                              # 本脚本所在路径
 hooks_dir="${script_dir}/hooks"                         # git 钩子路径
 system_hooks_dir="${HOME}/Documents/Repos/System/hooks" # 本地 System 存储库 git 钩子路径
 repo_name="https://github.com/YHYJ/System.git"          # 云端 System 存储库路径
+tmp_dir="/tmp/sync-hook"                                # 临时目录
+
+mkdir -p "${hooks_dir}"
 
 if [ -d "${system_hooks_dir}" ]; then
-  echo "Copying hooks from 'System' repo"
-  mkdir -p "${hooks_dir}"
+  echo "Synchronizing hooks from local 'System' repo"
   cp -r "${system_hooks_dir}/"* "${hooks_dir}"
-  echo "Hooks copied successfully."
+  echo "Hooks copied successfully"
 else
-  echo "Downloading hooks from 'System' repo"
-  git clone "${repo_name}" temp
-  mkdir -p "${hooks_dir}"
-  cp -r temp/hooks/* "${hooks_dir}"
-  rm -rf temp
-  echo "Hooks downloaded successfully."
+  echo "Synchronizing hooks from cloud 'System' repo"
+  git clone "${repo_name}" "${tmp_dir}"
+  cp -r "${tmp_dir}"/hooks/* "${hooks_dir}"
+  rm -rf "${tmp_dir}"
+  echo "Hooks copied successfully"
 fi
