@@ -22,7 +22,7 @@ var pacnewCmd = &cobra.Command{
 	Long:  `Check and compare the old and new configuration files of installed packages.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := cli.PacnewChecker(); err != nil {
-			color.Error.Println(err)
+			color.Danger.Println(err)
 		}
 	},
 }
