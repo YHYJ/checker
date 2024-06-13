@@ -13,6 +13,7 @@ import (
 	"github.com/gookit/color"
 	"github.com/spf13/cobra"
 	"github.com/yhyj/checker/cli"
+	"github.com/yhyj/checker/general"
 )
 
 // pacnewCmd represents the pacnew command
@@ -22,7 +23,8 @@ var pacnewCmd = &cobra.Command{
 	Long:  `Check and compare the old and new configuration files of installed packages.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := cli.PacnewChecker(); err != nil {
-			color.Danger.Println(err)
+			fileName, lineNo := general.GetCallerInfo()
+			color.Danger.Printf("Check pacnew error (%s:%d): %s\n", fileName, lineNo+1, err)
 		}
 	},
 }
