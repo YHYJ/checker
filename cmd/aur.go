@@ -24,7 +24,7 @@ var aurCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := cli.AURChecker(); err != nil {
 			fileName, lineNo := general.GetCallerInfo()
-			color.Danger.Printf("Check AUR error (%s:%d): %s\n", fileName, lineNo+1, err)
+			color.Printf("%s %s -> Unable to check aur: %s\n", general.DangerText("Error:"), general.SecondaryText("[", fileName, ":", lineNo+1, "]"), err)
 		}
 	},
 }
