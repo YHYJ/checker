@@ -10,5 +10,5 @@ Description: 定义符号
 package general
 
 var (
-	ErrorFlag = "•" // 身份符号 - 报错
+	ErrorInfoFlag = "•" // 身份符号 - 报错信息
 )

@@ -24,7 +24,7 @@ var pacnewCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := cli.PacnewChecker(); err != nil {
 			fileName, lineNo := general.GetCallerInfo()
-			color.Printf("%s %s %s\n", general.DangerText(general.ErrorFlag), general.SecondaryText("[", fileName, ":", lineNo+1, "]"), err)
+			color.Printf("%s %s %s\n", general.DangerText(general.ErrorInfoFlag), general.SecondaryText("[", fileName, ":", lineNo+1, "]"), err)
 		}
 	},
 }
