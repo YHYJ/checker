@@ -77,10 +77,10 @@ go build -gcflags="-trimpath" -ldflags="-s -w -X github.com/yhyj/checker/general
 > - 例如 aarch64 则设 GOARCH=arm64
 > - ...
 
-因为 checker 仅支持 Linux 系统，设置如下系统变量后使用 [编译安装](#编译安装) 的命令即可进行交叉编译：
+设置如下系统变量后使用 [编译安装](#编译安装) 的命令即可进行交叉编译：
 
 - CGO_ENABLED: 不使用 CGO，设为 0
-- GOOS: 仅支持 Linux，设为 linux
+- GOOS: 设为 linux
 - GOARCH: 根据当前系统架构设置
 
 ## 用法
