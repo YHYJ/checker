@@ -93,6 +93,10 @@ go build -gcflags="-trimpath" -ldflags="-s -w -X github.com/yhyj/checker/general
 
   检查并比较已更新包的新旧配置文件
 
+- `update`子命令
+
+  检测 Arch Linux 官方仓库和 AUR 的更新信息
+
 - `version`子命令
 
   查看程序版本信息
