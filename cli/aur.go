@@ -11,11 +11,11 @@ package cli
 
 import "github.com/yhyj/checker/general"
 
-// AURChecker 检测已安装的属于 AUR 的异常包
+// CheckAurAbnormal 检测已安装的 AUR 包的异常
 //
 // 返回：
 //   - 标准输出
-func AURChecker() string {
+func CheckAurAbnormal() string {
 	aurArgs := []string{"-c", `pacman -Qmq | parallel 'result=$(package-query -AQ -f "%v" "{}" | uniq -d | wc -l); [ $result -eq 0  ] && echo "{}"'`}
 	stdout, _, _ := general.RunCommandToBuffer("bash", aurArgs)
 	return stdout

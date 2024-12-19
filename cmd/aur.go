@@ -21,7 +21,7 @@ var aurCmd = &cobra.Command{
 	Short: "Check AUR package synchronization",
 	Long:  `Check if the locally installed AUR package is kept in sync with the source.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		info := cli.AURChecker()
+		info := cli.CheckAurAbnormal()
 		color.Println(info)
 	},
 }
