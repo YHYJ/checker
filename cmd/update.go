@@ -25,6 +25,7 @@ var updateCmd = &cobra.Command{
 		// 获取配置文件路径
 		configFile, _ := cmd.Flags().GetString("config")
 		// 解析参数
+		emptyFlag, _ := cmd.Flags().GetBool("empty")
 		fileFlag, _ := cmd.Flags().GetBool("file")
 
 		var (
@@ -46,9 +47,17 @@ var updateCmd = &cobra.Command{
 			return
 		}
 
-		// 根据 file 参数决定输出到文件还是终端
+		// 清空记录文件
+		if emptyFlag {
+			general.EmptyFile(config.Update.ArchRecordFile)
+			general.EmptyFile(config.Update.AurRecordFile)
+			return
+		}
+
+		// 获取更新信息
 		archUpdateList := cli.CheckArchUpdates(config)
 		aurUpdateList := cli.CheckAurUpdates(config)
+		// 根据 file 参数决定输出到文件还是终端
 		if fileFlag {
 			general.WriteFile(config.Update.ArchRecordFile, archUpdateList, writeMode)
 			general.WriteFile(config.Update.AurRecordFile, aurUpdateList, writeMode)
@@ -61,6 +70,7 @@ var updateCmd = &cobra.Command{
 }
 
 func init() {
+	updateCmd.Flags().Bool("empty", false, "Clear the file that records update information")
 	updateCmd.Flags().Bool("file", false, "The list of pending updates will be recorded in the file")
 
 	updateCmd.Flags().BoolP("help", "h", false, "help for update command")

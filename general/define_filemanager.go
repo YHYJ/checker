@@ -102,6 +102,28 @@ func WriteFile(filePath, content, mode string) error {
 	return nil
 }
 
+// EmptyFile 清空文件内容，文件不存在则创建
+//
+// 参数：
+//   - file: 文件路径
+//
+// 返回：
+//   - 错误信息
+func EmptyFile(file string) error {
+	// 打开文件，如果不存在则创建，文件权限为读写
+	text, err := os.OpenFile(file, os.O_RDWR|os.O_TRUNC|os.O_CREATE, 0666)
+	if err != nil {
+		return err
+	}
+	defer text.Close()
+
+	// 清空文件内容
+	if err := text.Truncate(0); err != nil {
+		return err
+	}
+	return nil
+}
+
 // DeleteFile 删除文件，如果目标是文件夹则包括其下所有文件
 //
 // 参数：
