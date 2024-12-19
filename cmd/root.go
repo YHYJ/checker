@@ -13,6 +13,7 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
+	"github.com/yhyj/checker/general"
 )
 
 // rootCmd represents the base command when called without any subcommands
@@ -33,5 +34,7 @@ func Execute() {
 }
 
 func init() {
+	rootCmd.PersistentFlags().String("config", general.ConfigFile, "Specify configuration file")
+
 	rootCmd.Flags().BoolP("help", "h", false, "help for checker")
 }
