@@ -12,3 +12,11 @@ package general
 var (
 	ErrorInfoFlag = "•" // 身份符号 - 报错信息
 )
+
+var (
+	SeparatorBaseLength = 50    // 分隔符基础长度
+	Separator1st        = "="   // 分隔符 - 1级
+	Separator2st        = "-"   // 分隔符 - 2级
+	Separator3st        = "·"   // 分隔符 - 3级
+	Indicator           = "-->" // 分隔符 - 指示器
+)
