@@ -13,6 +13,8 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"strconv"
+	"syscall"
 )
 
 // FileExist 判断文件是否存在
@@ -110,17 +112,61 @@ func WriteFile(filePath, content, mode string) error {
 // 返回：
 //   - 错误信息
 func EmptyFile(file string) error {
-	// 打开文件，如果不存在则创建，文件权限为读写
-	text, err := os.OpenFile(file, os.O_RDWR|os.O_TRUNC|os.O_CREATE, 0666)
+	// 打开文件，如果不存在则创建，文件权限为读写，os.O_TRUNC 标志清空文件
+	text, err := os.OpenFile(file, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
 	if err != nil {
 		return err
 	}
 	defer text.Close()
 
-	// 清空文件内容
-	if err := text.Truncate(0); err != nil {
+	return nil
+}
+
+// EmptyFileAsUser 使用用户权限清空文件内容，文件不存在则创建
+//
+// 适用于程序在 root 权限下执行但文件清空需要用户权限的情况
+//
+// 参数：
+//   - file: 文件路径
+//
+// 返回：
+//   - 错误信息
+func EmptyFileAsUser(file string) error {
+	// 保存当前的用户和组ID
+	origUID := os.Getuid()
+	origGID := os.Getgid()
+
+	// 切换到目标用户和组
+	uid, err := strconv.Atoi(UserId)
+	if err != nil {
 		return err
 	}
+	gid, err := strconv.Atoi(GroupId)
+	if err != nil {
+		return err
+	}
+	if err = syscall.Setgid(gid); err != nil {
+		return err
+	}
+	if err = syscall.Setuid(uid); err != nil {
+		return err
+	}
+
+	// 打开文件，如果不存在则创建，文件权限为读写，os.O_TRUNC 标志清空文件
+	text, err := os.OpenFile(file, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
+	if err != nil {
+		return err
+	}
+	defer text.Close()
+
+	// 恢复原始的用户和组ID
+	if err = syscall.Setgid(origGID); err != nil {
+		return err
+	}
+	if err = syscall.Setuid(origUID); err != nil {
+		return err
+	}
+
 	return nil
 }
 

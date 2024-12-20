@@ -49,8 +49,8 @@ var updateCmd = &cobra.Command{
 
 		// 清空记录文件
 		if emptyFlag {
-			general.EmptyFile(config.Update.ArchRecordFile)
-			general.EmptyFile(config.Update.AurRecordFile)
+			general.EmptyFileAsUser(config.Update.ArchRecordFile)
+			general.EmptyFileAsUser(config.Update.AurRecordFile)
 			return
 		}
 

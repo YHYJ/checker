@@ -43,6 +43,8 @@ var Platform = runtime.GOOS                   // 操作系统
 var Arch = runtime.GOARCH                     // 系统架构
 var Sep = string(filepath.Separator)          // 路径分隔符
 var UserInfo, _ = GetUserInfoByName(UserName) // 用户信息
+var UserId = UserInfo.Uid                     // 用户 ID
+var GroupId = UserInfo.Gid                    // 用户组 ID
 var Language = GetLanguage()                  // 系统语言
 
 var (
