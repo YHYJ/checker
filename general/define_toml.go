@@ -89,9 +89,9 @@ func LoadConfigToStruct(configTree *toml.Tree) (*Config, error) {
 //   - 写入的字节数
 //   - 错误信息
 func WriteTomlConfig(filePath string) (int64, error) {
-	// 定义一个 map[string]interface{} 类型的变量并赋值
-	exampleConf := map[string]interface{}{
-		"update": map[string]interface{}{
+	// 定义一个 map[string]any 类型的变量并赋值
+	exampleConf := map[string]any{
+		"update": map[string]any{
 			"arch_checker":     "checkupdates",
 			"arch_record_file": "/tmp/checker-arch.log",
 			"aur_checker":      "yay -Qua",
