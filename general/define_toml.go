@@ -13,7 +13,9 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"time"
 
+	"github.com/gookit/color"
 	"github.com/pelletier/go-toml"
 )
 
@@ -26,6 +28,26 @@ type UpdateConfig struct {
 	ArchRecordFile string `toml:"arch_record_file"`
 	AurChecker     string `toml:"aur_checker"`
 	AurRecordFile  string `toml:"aur_record_file"`
+}
+
+// 配置项
+var (
+	// 允许用户修改的配置项
+	// 使用默认值的配置项
+	archChecker    = "checkupdates"
+	archRecordFile = "/tmp/checker-arch.log"
+	aurChecker     = "yay -Qua"
+	aurRecordFile  = "/tmp/checker-aur.log"
+)
+
+// 配置
+var config = Config{
+	Update: UpdateConfig{
+		ArchChecker:    archChecker,
+		ArchRecordFile: archRecordFile,
+		AurChecker:     aurChecker,
+		AurRecordFile:  aurRecordFile,
+	},
 }
 
 // isTomlFile 检测文件是不是 toml 文件
@@ -89,32 +111,28 @@ func LoadConfigToStruct(configTree *toml.Tree) (*Config, error) {
 //   - 写入的字节数
 //   - 错误信息
 func WriteTomlConfig(filePath string) (int64, error) {
-	// 定义一个 map[string]any 类型的变量并赋值
-	exampleConf := map[string]any{
-		"update": map[string]any{
-			"arch_checker":     "checkupdates",
-			"arch_record_file": "/tmp/checker-arch.log",
-			"aur_checker":      "yay -Qua",
-			"aur_record_file":  "/tmp/checker-aur.log",
-		},
-	}
-	// 检测配置文件是否存在
-	if !FileExist(filePath) {
-		return 0, fmt.Errorf("Open %s: no such file or directory", filePath)
-	}
-	// 检测配置文件是否是 toml 文件
-	if !isTomlFile(filePath) {
-		return 0, fmt.Errorf("Open %s: is not a toml file", filePath)
-	}
-	// 把 exampleConf 转换为 *toml.Tree 类型
-	tree, err := toml.TreeFromMap(exampleConf)
-	if err != nil {
-		return 0, err
-	}
-	// 打开一个文件并获取 io.Writer 接口
+	// 打开配置文件
 	file, err := os.OpenFile(filePath, os.O_RDWR|os.O_CREATE, 0644)
 	if err != nil {
 		return 0, err
 	}
-	return tree.WriteTo(file)
+	defer file.Close()
+
+	// 写入注释
+	manual := color.Sprintf("##\n## %s - %s\n## Generaled on %s\n##\n\n", Name, Version, time.Now().Format("2006-01-02 15:04:05"))
+	n, err := file.WriteString(manual)
+	if err != nil {
+		return int64(n), err
+	}
+
+	// 创建编码器并设置顺序保留
+	encoder := toml.NewEncoder(file)
+	encoder.Order(toml.OrderPreserve)
+
+	if err := encoder.Encode(config); err != nil {
+		return int64(n), err
+	}
+
+	stat, _ := file.Stat()
+	return stat.Size(), nil
 }
